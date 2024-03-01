@@ -13,7 +13,7 @@ public class RestCatFactService implements CatFactService {
 
 	@Override
 	public CatFact getFact() {
-		return null;
+		return restTemplate.getForObject(API_URL, CatFact.class);
 	}
 
 }

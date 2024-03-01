@@ -13,7 +13,7 @@ public class RestCatPicService implements CatPicService {
 
 	@Override
 	public CatPic getPic() {
-		return null;
+		return restTemplate.getForObject(API_URL, CatPic.class);
 	}
 
 }	

@@ -78,11 +78,15 @@ public class JdbcCatCardDao implements CatCardDao {
         String sql = "DELETE FROM catcards WHERE id = ?";
         try {
             numberOfRows = jdbcTemplate.update(sql, id);
+            if (numberOfRows < 1) {
+                throw new DaoException("not found");
+            }
         } catch (CannotGetJdbcConnectionException e) {
             throw new DaoException("Unable to connect to server or database", e);
         } catch (DataIntegrityViolationException e) {
             throw new DaoException("Data integrity violation", e);
         }
+
         return numberOfRows;
     }
 
